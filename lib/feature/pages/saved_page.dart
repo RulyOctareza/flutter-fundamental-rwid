@@ -17,7 +17,7 @@ class SavedPage extends StatelessWidget {
                 '/newspage',
               );
             },
-            child: Text('Go to News Page')),
+            child: const Text('Go to News Page')),
         ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(
@@ -25,7 +25,7 @@ class SavedPage extends StatelessWidget {
                 '/todolist',
               );
             },
-            child: Text('Go to todo List')),
+            child: const Text('Go to todo List')),
       ],
     ));
   }

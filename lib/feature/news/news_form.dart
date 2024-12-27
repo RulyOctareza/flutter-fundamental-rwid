@@ -77,7 +77,7 @@ class _NewsFormState extends State<NewsForm> {
               Expanded(
                 flex: 12,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.black54),
@@ -87,7 +87,7 @@ class _NewsFormState extends State<NewsForm> {
                       : Text(_selectedDate!.toIso8601String()),
                 ),
               ),
-              Spacer(flex: 1),
+              const Spacer(flex: 1),
               CustomOutlinedButton(
                 onPressed: () async {
                   final date = await showDatePicker(
@@ -102,7 +102,7 @@ class _NewsFormState extends State<NewsForm> {
                     });
                   }
                 },
-                child: Text('Select Date'),
+                child: const Text('Select Date'),
               ),
             ],
           ),

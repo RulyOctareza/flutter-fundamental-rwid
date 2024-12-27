@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Lottie.asset(
                           'assets/lottie/Animation - 1733772213165.json',
                           width: 120,

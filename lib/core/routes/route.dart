@@ -14,5 +14,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   '/settings': (context) => const SettingsPage(),
   '/newspage': (context) => const NewsPage(),
   '/newsform': (context) => const NewsForm(),
-  '/todolist': (context) => TodoListScreen(),
+  '/todolist': (context) => const TodoListScreen(),
 };

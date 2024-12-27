@@ -27,7 +27,7 @@ class _NewsPageState extends State<NewsPage> {
       builder: (context) => SimpleDialog(
         children: [
           SimpleDialogOption(
-            child: Text('Edit'),
+            child: const Text('Edit'),
             onPressed: () {
               Navigator.pushReplacement(
                   context,
@@ -69,7 +69,7 @@ class _NewsPageState extends State<NewsPage> {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.dashboard),
+                icon: const Icon(Icons.dashboard),
               )
             ],
           ),
@@ -91,7 +91,7 @@ class _NewsPageState extends State<NewsPage> {
               color: Colors.white,
             ),
           ),
-          body: newsBox.getAll().length == 0
+          body: newsBox.getAll().isEmpty
               ? const Center(child: Text('No Saved News'))
               : Padding(
                   padding: const EdgeInsets.all(16),
@@ -100,6 +100,7 @@ class _NewsPageState extends State<NewsPage> {
                       final news = newsBox.getAll()[index];
                       return NewsCard(
                           news: news,
+                          
                           onLongPress: () => _onLongPress(context, news));
                     },
                     itemCount: newsBox.getAll().length,

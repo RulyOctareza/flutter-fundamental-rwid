@@ -4,8 +4,10 @@ import '../../core/database/sqflite/todo_model.dart';
 import '../../core/database/sqflite/todo_repository.dart';
 
 class TodoListScreen extends StatefulWidget {
+  const TodoListScreen({super.key});
+
   @override
-  _TodoListScreenState createState() => _TodoListScreenState();
+  State<TodoListScreen> createState() => _TodoListScreenState();
 }
 
 class _TodoListScreenState extends State<TodoListScreen> {
@@ -61,7 +63,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo List'),
+        title: const Text('Todo List'),
       ),
       body: Column(
         children: [
@@ -71,17 +73,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: 'Todo Name'),
+                  decoration: const InputDecoration(labelText: 'Todo Name'),
                 ),
                 TextField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(labelText: 'Description'),
+                  decoration: const InputDecoration(labelText: 'Description'),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     _addTodo();
                   },
-                  child: Text('Add Todo'),
+                  child: const Text('Add Todo'),
                 ),
               ],
             ),
@@ -95,26 +97,26 @@ class _TodoListScreenState extends State<TodoListScreen> {
                   title: Text(todo.name),
                   subtitle: Text(todo.description),
                   trailing: IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: () {
                       _nameController.text = todo.name;
                       _descriptionController.text = todo.description;
                       showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
-                          title: Text('Edit Todo'),
+                          title: const Text('Edit Todo'),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               TextField(
                                 controller: _nameController,
-                                decoration:
-                                    InputDecoration(labelText: 'Todo Name'),
+                                decoration: const InputDecoration(
+                                    labelText: 'Todo Name'),
                               ),
                               TextField(
                                 controller: _descriptionController,
-                                decoration:
-                                    InputDecoration(labelText: 'Description'),
+                                decoration: const InputDecoration(
+                                    labelText: 'Description'),
                               ),
                             ],
                           ),
@@ -123,14 +125,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                             ),
                             TextButton(
                               onPressed: () {
                                 _updateTodo(todo);
                                 Navigator.of(context).pop();
                               },
-                              child: Text('Update'),
+                              child: const Text('Update'),
                             ),
                           ],
                         ),
@@ -141,22 +143,22 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: Text('Delete Todo'),
-                        content:
-                            Text('Are you sure you want to delete this todo?'),
+                        title: const Text('Delete Todo'),
+                        content: const Text(
+                            'Are you sure you want to delete this todo?'),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                           TextButton(
                             onPressed: () {
                               _deleteTodo(todo.id!);
                               Navigator.of(context).pop();
                             },
-                            child: Text('Delete'),
+                            child: const Text('Delete'),
                           ),
                         ],
                       ),

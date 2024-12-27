@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import '../../core/database/objectbox/news_model.dart';
 
 class NewsCard extends StatefulWidget {
@@ -87,12 +86,15 @@ class _NewsCardState extends State<NewsCard>
                       Text(
                         widget.news.title ?? '',
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        (widget.news.date ?? '').toString(),
+                        widget.news.date != null
+                            ? DateFormat('dd MMM yyyy')
+                                .format(widget.news.date!)
+                            : '',
                         style:
                             const TextStyle(fontSize: 14, color: Colors.grey),
                       ),
