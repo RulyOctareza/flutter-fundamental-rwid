@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../core/database/objectbox/news_model.dart';
+import '../../../core/database/objectbox/news_model.dart';
 
 class NewsCard extends StatefulWidget {
   final void Function()? onLongPress;

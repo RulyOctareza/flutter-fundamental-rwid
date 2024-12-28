@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rwid/feature/auth/login_page.dart';
-import 'package:flutter_rwid/feature/news/news_form.dart';
-import 'package:flutter_rwid/feature/news/news_page.dart';
+import 'package:flutter_rwid/feature/news/views/news_form.dart';
+import 'package:flutter_rwid/feature/news/views/news_page.dart';
 import 'package:flutter_rwid/feature/pages/dashboard.dart';
 import 'package:flutter_rwid/feature/pages/saved_page.dart';
 import 'package:flutter_rwid/feature/pages/settings_page.dart';

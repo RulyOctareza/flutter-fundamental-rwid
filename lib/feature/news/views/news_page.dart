@@ -3,7 +3,7 @@ import 'package:flutter_rwid/main.dart';
 
 import 'package:objectbox/objectbox.dart';
 
-import '../../core/database/objectbox/news_model.dart';
+import '../../../core/database/objectbox/news_model.dart';
 import 'news_card.dart';
 import 'news_form.dart';
 
@@ -100,7 +100,6 @@ class _NewsPageState extends State<NewsPage> {
                       final news = newsBox.getAll()[index];
                       return NewsCard(
                           news: news,
-                          
                           onLongPress: () => _onLongPress(context, news));
                     },
                     itemCount: newsBox.getAll().length,

@@ -6,10 +6,10 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:objectbox/objectbox.dart';
 
-import '../widgets/custom_outlined_button.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/primary_button.dart';
-import '../../core/database/objectbox/news_model.dart';
+import '../../widgets/custom_outlined_button.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/primary_button.dart';
+import '../../../core/database/objectbox/news_model.dart';
 
 class NewsForm extends StatefulWidget {
   final Newsmodel? news;
@@ -77,7 +77,8 @@ class _NewsFormState extends State<NewsForm> {
               Expanded(
                 flex: 12,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: Colors.black54),
