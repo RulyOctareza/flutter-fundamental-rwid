@@ -27,7 +27,7 @@ class _LoginFormState extends State<LoginForm> {
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(15),
-          color: Colors.black.withOpacity(0.4),
+          color: Colors.black26,
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),

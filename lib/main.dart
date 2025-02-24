@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rwid/core/database/objectbox/objectbox.dart';
+import 'package:flutter_rwid/core/database/remote/remote_data_source.dart';
 import 'package:flutter_rwid/core/routes/route.dart';
 import 'package:flutter_rwid/feature/news/bloc/news_bloc.dart';
+import 'package:flutter_rwid/feature/news/bloc/news_event.dart';
 import 'package:flutter_rwid/feature/news/repository/news_data_provider.dart';
 import 'package:flutter_rwid/feature/news/repository/news_repository.dart';
+import 'package:flutter_rwid/feature/news_api/bloc/news_api_bloc.dart';
+import 'package:flutter_rwid/feature/news_api/bloc/news_api_event.dart';
 
 late ObjectBox objectBox;
 void main() async {
@@ -26,16 +30,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NewsBloc(
-          newsRepository: NewsRepository(
-              newsDataProvider: NewsDataProvider(objectBox: objectBox))),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'News App',
-        initialRoute: '/',
-        routes: appRoutes,
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<NewsBloc>(
+            create: (_) => NewsBloc(
+                newsRepository: NewsRepository(
+                    newsDataProvider: NewsDataProvider(objectBox: objectBox)))
+              ..add(GetNews()),
+          ),
+          BlocProvider<NewsApiBloc>(
+            create: (_) => NewsApiBloc(
+              remoteDataSource: RemoteDataSource(),
+            )..add(LoadNews()),
+          ),
+        ],
+        child: MaterialApp(
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/dashboard',
+          routes: appRoutes,
+        ));
   }
 }

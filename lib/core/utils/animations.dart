@@ -19,13 +19,13 @@ class ShowUpAnimation extends StatefulWidget {
 
 class _ShowUpAnimationState extends State<ShowUpAnimation>
     with TickerProviderStateMixin {
-  /// CREATING THE ANIMATION CONTROLLER VARIABLE
+ 
   late AnimationController _animController;
 
-  /// CREATING THE ANIMATION  VARIABLE OF TYPE OFFSET
+
   late Animation<Offset> _animOffset;
 
-  /// CREATING THE TIMER VARIABLE
+
   late Timer _timer;
 
   @override

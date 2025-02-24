@@ -3,6 +3,7 @@ import 'package:flutter_rwid/feature/auth/login_page.dart';
 import 'package:flutter_rwid/feature/news/views/news_form.dart';
 import 'package:flutter_rwid/feature/news/views/news_page.dart';
 import 'package:flutter_rwid/feature/pages/dashboard.dart';
+import 'package:flutter_rwid/feature/pages/home_page.dart';
 import 'package:flutter_rwid/feature/pages/saved_page.dart';
 import 'package:flutter_rwid/feature/pages/settings_page.dart';
 import 'package:flutter_rwid/feature/todo_list/todo_list_page.dart';
@@ -15,4 +16,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   '/newspage': (context) => const NewsPage(),
   '/newsform': (context) => const NewsForm(),
   '/todolist': (context) => const TodoListScreen(),
+  '/homepage': (context) => const HomePage()
 };

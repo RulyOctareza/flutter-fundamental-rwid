@@ -58,7 +58,7 @@ class _NewsCardState extends State<NewsCard>
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(.05),
+          color: Colors.black,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(

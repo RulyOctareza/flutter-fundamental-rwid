@@ -51,7 +51,7 @@ class _DashboardState extends State<Dashboard> {
       ),
       body: PageView(
         controller: _pageController,
-        // scrollDirection: Axis.vertical,
+        scrollDirection: Axis.vertical,
         onPageChanged: (value) {
           setState(() {
             _selectedIndex = value;
