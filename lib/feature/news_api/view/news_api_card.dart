@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rwid/core/database/news_api_model.dart';
 
+import 'package:flutter_rwid/feature/news/views/news_detail_page.dart';
+import 'package:intl/intl.dart';
+
 class NewsApiCard extends StatefulWidget {
   final void Function()? onLongPress;
   final NewsApiModel news;
@@ -21,7 +24,15 @@ class _NewsCardState extends State<NewsApiCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: widget.onLongPress,
-      onTap: () => setState(() => isOpen = !isOpen),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPageNews(news: widget.news),
+          ),
+        );
+      },
+      onDoubleTap: () => setState(() => isOpen = !isOpen),
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(16),
@@ -58,30 +69,29 @@ class _NewsCardState extends State<NewsApiCard> {
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        (widget.news.publishedAt ?? '').toString(),
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.grey),
+                        widget.news.publishedAt != null
+                            ? DateFormat('EEE, dd-MM-yy, HH:mm')
+                                .format(widget.news.publishedAt!)
+                            : '',
+                        style: TextStyle(fontSize: 12, color: Colors.grey[700]),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                Container(
+                  height: 150,
                   width: 150,
-                  child: widget.news.urlToImage != null
-                      ? Image.network(
-                          widget.news.urlToImage ?? '',
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              "assets/images/computer.jpeg",
-                              fit: BoxFit.cover,
-                            );
-                          },
-                        )
-                      : Image.asset(
-                          "assets/images/computer.jpeg",
-                          fit: BoxFit.cover,
-                        ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: widget.news.urlToImage != null &&
+                              widget.news.urlToImage!.isNotEmpty
+                          ? NetworkImage(widget.news.urlToImage!)
+                          : const AssetImage('assets/images/computer.jpeg')
+                              as ImageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ],
             ),

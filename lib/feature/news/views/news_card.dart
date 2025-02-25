@@ -20,7 +20,7 @@ class _NewsCardState extends State<NewsCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _heightFactor;
-  bool _isExpanded = false;
+  //bool _isExpanded = false;
 
   @override
   void initState() {
@@ -38,21 +38,23 @@ class _NewsCardState extends State<NewsCard>
     super.dispose();
   }
 
-  void _toggleExpand() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-      if (_isExpanded) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
-  }
+  // void _toggleExpand() {
+  //   setState(() {
+  //     _isExpanded = !_isExpanded;
+  //     if (_isExpanded) {
+  //       _controller.forward();
+  //     } else {
+  //       _controller.reverse();
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _toggleExpand,
+      onTap: () {
+        Navigator.pushNamed(context, '/detailnews');
+      },
       onLongPress: widget.onLongPress,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),

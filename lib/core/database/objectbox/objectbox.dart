@@ -4,7 +4,6 @@ import 'package:path_provider/path_provider.dart';
 import '../../../objectbox.g.dart';
 
 class ObjectBox {
-  /// The Store of this app.
   late final Store store;
 
   ObjectBox._create(this.store);

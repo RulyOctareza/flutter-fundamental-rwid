@@ -47,18 +47,19 @@ class NewsApiModel {
         content: content ?? this.content,
       );
 
-  factory NewsApiModel.fromJson(Map<String, dynamic> json) => NewsApiModel(
+  factory NewsApiModel.fromJson(Map<String, dynamic> json) {
+    return NewsApiModel(
         source: json["source"] == null ? null : Source.fromJson(json["source"]),
         author: json["author"],
-        title: json["title"],
+        title: json["title"] as String?,
         description: json["description"],
-        url: json["url"],
+        url: json["url"] as String?,
         urlToImage: json["urlToImage"],
         publishedAt: json["publishedAt"] == null
             ? null
             : DateTime.parse(json["publishedAt"]),
-        content: json["content"],
-      );
+        content: json["content"]);
+  }
 
   Map<String, dynamic> toJson() => {
         "source": source?.toJson(),
@@ -67,7 +68,7 @@ class NewsApiModel {
         "description": description,
         "url": url,
         "urlToImage": urlToImage,
-        "publishedAt": publishedAt?.toIso8601String(),
+        "publishedAt": publishedAt?.toString(),
         "content": content,
       };
 }

@@ -7,11 +7,8 @@ class DBHelper {
   static final DBHelper dbHero = DBHelper._secretDBConstructor(); //----
   static Database? _database;
 
-  DBHelper._secretDBConstructor(); //The _secretDBConstructor is a private named
-  // constructor within the DBHelper class. Its main purpose is to ensure that
-  //only one instance of the DBHelper class is created
+  DBHelper._secretDBConstructor(); 
 
-//use for 'get' access to the SQLite database
   Future<Database> get dataBase async {
     if (_database != null) return _database!;
 
@@ -19,7 +16,6 @@ class DBHelper {
     return _database!;
   }
 
-//initializes the SQLite database
   Future<Database> _initDatabase() async {
     final path = join(await getDatabasesPath(), 'my_database.db');
     return await openDatabase(
@@ -40,7 +36,6 @@ class DBHelper {
     ''');
   }
 
-// Insert data into the database
   Future<int> insertDb(Map<String, dynamic> row) async {
     Database db = await dbHero.dataBase;
     return await db.insert('my_table', row);

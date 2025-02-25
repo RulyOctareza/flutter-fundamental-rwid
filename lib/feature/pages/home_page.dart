@@ -21,7 +21,6 @@ class HomePage extends StatelessWidget {
           },
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   margin: const EdgeInsets.all(16),
@@ -118,24 +117,27 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                BlocBuilder<NewsApiBloc, NewsApiState>(
-                    builder: (context, state) {
-                  if (state is NewsApiLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is NewsApiError) {
-                    return Center(child: Text(state.message));
-                  } else if (state is NewsApiLoaded) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.news.length,
-                      itemBuilder: (context, index) {
-                        return NewsApiCard(news: state.news[index]);
-                      },
-                    );
-                  }
-                  return const Center(child: Text('No Data available'));
-                }),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: BlocBuilder<NewsApiBloc, NewsApiState>(
+                      builder: (context, state) {
+                    if (state is NewsApiLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is NewsApiError) {
+                      return Center(child: Text(state.message));
+                    } else if (state is NewsApiLoaded) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: state.news.length,
+                        itemBuilder: (context, index) {
+                          return NewsApiCard(news: state.news[index]);
+                        },
+                      );
+                    }
+                    return const Center(child: Text('No Data available'));
+                  }),
+                ),
               ],
             ),
           ),

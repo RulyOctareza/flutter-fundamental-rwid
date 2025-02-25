@@ -1,0 +1,2 @@
+/Users/developer/DEVELOPMENTS/RWID_QUIZ_1/android/app/.cxx/Debug/3e156r2h/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/developer/DEVELOPMENTS/RWID_QUIZ_1/android/app/.cxx/Debug/3e156r2h/armeabi-v7a/CMakeFiles/rebuild_cache.dir
