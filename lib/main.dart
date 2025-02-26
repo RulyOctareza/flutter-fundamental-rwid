@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rwid/core/database/objectbox/objectbox.dart';
@@ -9,10 +10,14 @@ import 'package:flutter_rwid/feature/news/repository/news_data_provider.dart';
 import 'package:flutter_rwid/feature/news/repository/news_repository.dart';
 import 'package:flutter_rwid/feature/news_api/bloc/news_api_bloc.dart';
 import 'package:flutter_rwid/feature/news_api/bloc/news_api_event.dart';
+import 'package:flutter_rwid/firebase_options.dart';
 
 late ObjectBox objectBox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   objectBox = await ObjectBox.create();
 
@@ -48,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
           debugShowCheckedModeBanner: false,
-          initialRoute: '/dashboard',
+          initialRoute: '/',
           routes: appRoutes,
         ));
   }

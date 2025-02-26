@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/text_utils.dart';
@@ -14,6 +15,7 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -23,6 +25,31 @@ class _SignupFormState extends State<SignupForm> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _register() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _confirmPasswordController.text.trim(),
+      );
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Registrasi berhasil !')));
+
+      Navigator.of(context).pushReplacementNamed('/');
+    } on FirebaseAuthException catch (e) {
+      String message = 'Terjadi Kesalahan';
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(
+          SnackBar(backgroundColor: Colors.red, content: Text(message)));
+    }
   }
 
   @override
@@ -65,6 +92,7 @@ class _SignupFormState extends State<SignupForm> {
                       ),
                     ),
                     child: TextFormField(
+                      controller: _emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please input your email";
@@ -151,18 +179,7 @@ class _SignupFormState extends State<SignupForm> {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Sign up successful!')),
-                          );
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
-                        }
-                      }
-                    },
+                    onTap: _register,
                     child: Container(
                       height: 40,
                       width: double.infinity,

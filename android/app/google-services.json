@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739950977523",
+    "project_id": "news-app-rwid",
+    "storage_bucket": "news-app-rwid.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739950977523:android:b77cce211238c127c5b286",
+        "android_client_info": {
+          "package_name": "com.example.flutter_rwid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2-FWNaeza8yEdaIN8dxPs1BQycF13f6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

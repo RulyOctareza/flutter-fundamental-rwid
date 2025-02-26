@@ -1,9 +1,10 @@
+import 'dart:developer';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rwid/core/utils/text_utils.dart';
 
-import '../../auth/signup_page.dart';
 import '../../pages/dashboard.dart';
 
 class LoginForm extends StatefulWidget {
@@ -15,7 +16,61 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _rememberMe = false;
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _login() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Login berhasil!")));
+
+      Navigator.of(
+        context,
+      ).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Dashboard()));
+    } on FirebaseAuthException catch (e) {
+      String message = "Terjadi Kesalahan";
+
+      log("FirebaseAuthException: ${e.code} - ${e.message}");
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
+    } catch (e) {
+      log("Unknown error: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Terjadi kesalahan yang tidak diketahui."),
+        ),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -142,16 +197,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Success Login..')),
-                        );
-
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Dashboard()));
-                      }
-                    },
+                    onTap: _isLoading ? null : _login,
                     child: Container(
                       height: 40,
                       width: double.infinity,
@@ -160,18 +206,23 @@ class _LoginFormState extends State<LoginForm> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       alignment: Alignment.center,
-                      child: const TextUtil(
-                        text: "Log In",
-                        color: Colors.black,
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.black)
+                          : const Text(
+                              "Log In",
+                              style: TextStyle(color: Colors.black),
+                            ),
                     ),
                   ),
                   const Spacer(),
                   Center(
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const SignupPage()));
+                        try {
+                          Navigator.of(context).pushReplacementNamed('/signup');
+                        } catch (e) {
+                          print("Error navigating: $e");
+                        }
                       },
                       child: const TextUtil(
                         text: "Don't have an account? REGISTER",

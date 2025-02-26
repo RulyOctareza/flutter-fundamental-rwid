@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rwid/core/database/news_api_model.dart';
 import 'package:flutter_rwid/feature/auth/login_page.dart';
+import 'package:flutter_rwid/feature/auth/signup_page.dart';
 import 'package:flutter_rwid/feature/news/views/news_form.dart';
 import 'package:flutter_rwid/feature/news/views/news_page.dart';
 import 'package:flutter_rwid/feature/pages/dashboard.dart';
@@ -13,6 +14,7 @@ late final NewsApiModel news;
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
   '/': (context) => const LoginPage(),
+  '/signup': (context) => const SignupPage(),
   '/dashboard': (context) => const Dashboard(),
   '/saved': (context) => const SavedPage(),
   '/settings': (context) => const SettingsPage(),
