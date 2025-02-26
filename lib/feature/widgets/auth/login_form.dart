@@ -215,11 +215,7 @@ class _LoginFormState extends State<LoginForm> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        try {
-                          Navigator.of(context).pushReplacementNamed('/signup');
-                        } catch (e) {
-                          print("Error navigating: $e");
-                        }
+                        Navigator.of(context).pushReplacementNamed('/signup');
                       },
                       child: const TextUtil(
                         text: "Don't have an account? REGISTER",

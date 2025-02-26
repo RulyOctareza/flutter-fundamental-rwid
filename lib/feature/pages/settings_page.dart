@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rwid/feature/auth/login_page.dart';
 
 String email = 'rulyoctareza@gmail.com';
 String name = 'Ruly Octareza';
+
+
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -188,8 +189,8 @@ class SettingsPage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/', (route) => false);
                             },
                             child: const Text("Yes"),
                           ),
