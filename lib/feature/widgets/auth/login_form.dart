@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rwid/core/utils/text_utils.dart';
 
-import '../../pages/dashboard.dart';
-
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
@@ -45,10 +43,7 @@ class _LoginFormState extends State<LoginForm> {
         context,
       ).showSnackBar(const SnackBar(content: Text("Login berhasil!")));
 
-      Navigator.of(
-        context,
-      ).pushReplacement(
-          MaterialPageRoute(builder: (context) => const Dashboard()));
+      Navigator.of(context).pushReplacementNamed('/dashboard');
     } on FirebaseAuthException catch (e) {
       String message = "Terjadi Kesalahan";
 
@@ -111,6 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                     child: TextFormField(
+                      controller: _emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please input your email";
@@ -142,6 +138,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                     child: TextFormField(
+                      controller: _passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';

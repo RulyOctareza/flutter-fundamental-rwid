@@ -32,8 +32,8 @@ class _SignupFormState extends State<SignupForm> {
 
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _confirmPasswordController.text.trim(),
+        email: _emailController.text,
+        password: _passwordController.text,
       );
 
       ScaffoldMessenger.of(
@@ -43,7 +43,7 @@ class _SignupFormState extends State<SignupForm> {
           content: Text('Registrasi berhasil !')));
 
       Navigator.of(context).pushReplacementNamed('/');
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       String message = 'Terjadi Kesalahan';
       ScaffoldMessenger.of(
         context,
