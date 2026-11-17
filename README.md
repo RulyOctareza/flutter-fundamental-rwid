@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/preview/hero.png" alt="Flutter RWID — ilustrasi aplikasi personal branding" width="100%">
+  <img src="docs/preview/hero.svg" alt="Flutter RWID — ilustrasi aplikasi personal branding" width="100%">
 </p>
 
 <h1 align="center">Flutter RWID</h1>
