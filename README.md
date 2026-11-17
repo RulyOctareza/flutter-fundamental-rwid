@@ -1,25 +1,87 @@
-# flutter_rwid
+<p align="center">
+  <img src="docs/preview/hero.png" alt="Flutter RWID — ilustrasi aplikasi personal branding" width="100%">
+</p>
 
-Tugas Flutter Fundamental RWID
+<h1 align="center">Flutter RWID</h1>
 
-## Getting Started
+<p align="center">
+  <b>Aplikasi personal branding — tugas Flutter Fundamental RWID.</b><br>
+  Auth · saved items · settings · ObjectBox
+</p>
 
-Aplikasi ini dibuat untuk memenuhi tugas Flutter Fundamental sekaligus personal branading RWID.
+<p align="center">
+  <a href="https://flutter.dev"><img alt="Flutter" src="https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white"></a>
+  <img alt="ObjectBox" src="https://img.shields.io/badge/Database-ObjectBox-2196F3">
+</p>
 
-Halaman Homepage
+---
 
-![alt text](image.png)
+## ✨ Preview
 
-Halaman Savedpage
+<p align="center">
+  <img src="docs/preview/hero.png" alt="Mockup gelap Flutter RWID" width="90%">
+</p>
 
-![alt text](image-1.png)
+<table align="center">
+  <tr>
+    <td><img src="image.png" alt="Homepage" width="220"></td>
+    <td><img src="image-1.png" alt="Saved page" width="220"></td>
+    <td><img src="image-2.png" alt="Settings" width="220"></td>
+  </tr>
+  <tr>
+    <td align="center">Homepage</td>
+    <td align="center">Saved</td>
+    <td align="center">Settings</td>
+  </tr>
+</table>
 
-Halaman Settings
-![alt text](image-2.png)
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📖 Tentang
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Aplikasi yang dibuat untuk memenuhi tugas **Flutter Fundamental RWID** sekaligus media
+personal branding. Pengguna bisa login, menyimpan item, dan mengatur preferensi; data
+disimpan lokal dengan ObjectBox.
+
+---
+
+## 🌟 Fitur
+
+- 🔐 **Auth** — alur login
+- 📌 **Saved** — item tersimpan
+- ⚙️ **Settings** — preferensi aplikasi
+- 💾 **Penyimpanan lokal** ObjectBox
+- 🖼️ **Pemilihan gambar** dengan `image_picker`
+
+---
+
+## 🛠️ Tech Stack
+
+| Area | Pilihan |
+|---|---|
+| Framework | Flutter |
+| Database | ObjectBox |
+| Media | `image_picker` |
+| Penyimpanan | `path_provider` |
+
+---
+
+## 🚀 Menjalankan
+
+```bash
+flutter pub get
+
+# generate model ObjectBox
+dart run build_runner build --delete-conflicting-outputs
+
+flutter run
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+flutter analyze
+flutter test
+```
